@@ -51,6 +51,7 @@
   </style>
 </head>
 <body>
+  {% include 'navbar.html' %}
   <div class="container">
     <div class="book-detail">
       {% if book.image_url %}
@@ -63,5 +64,6 @@
       <a href="/purchase/{{ book.id }}/" class="btn">Buy Now</a>
     </div>
   </div>
+  {% include 'footer.html' %}
 </body>
 </html>

@@ -89,6 +89,12 @@ DATABASES = {
     }
 }
 
+STATIC_URL = '/static/'  # The URL to access static files
+STATICFILES_DIRS = [
+    BASE_DIR / "books" / "static",  # This is the path to your 'static' folder
+]
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

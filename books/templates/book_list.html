@@ -34,7 +34,7 @@
         border-bottom: none;
       }
       .book img {
-        width: 100px;
+        width: 200px;
         height: auto;
         margin-right: 20px;
         border-radius: 5px;
@@ -50,6 +50,7 @@
     </style>
   </head>
   <body>
+    {% include 'navbar.html' %}
     <div class="container">
       <h1>Available Books</h1>
       {% for book in books %}
@@ -65,12 +66,12 @@
           </a>
           <p><strong>Author:</strong> {{ book.author }}</p>
           <p><strong>Published Date:</strong> {{ book.published_date }}</p>
-          <p><strong>Description:</strong> {{ book.description }}</p>
         </div>
       </div>
       {% empty %}
       <p>No books available.</p>
       {% endfor %}
     </div>
+    {% include 'footer.html' %}
   </body>
 </html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Bookstore</title>
+    <style>
+      /* General Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .navbar a {
+        margin: 0 15px;
+        color: #fff;
+        font-size: 18px;
+        transition: color 0.3s ease;
+      }
+
+      .navbar a:hover {
+        color: #f4a261;
+      }
+
+      /* About Section */
+      #about {
+        padding: 40px;
+        text-align: center;
+        background-color: #fff;
+      }
+
+      .about-container h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .about-container p {
+        font-size: 18px;
+        margin: 10px 0;
+        line-height: 1.6;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .team-container {
+        margin-top: 40px;
+      }
+
+      .team-container h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .team-member {
+        display: inline-block;
+        width: 30%;
+        margin: 20px 1%;
+        text-align: center;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .team-member img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        margin-bottom: 15px;
+      }
+
+      .team-member h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .team-member p {
+        font-size: 16px;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <section id="about">
+      <div class="about-container">
+        <h1>About Us</h1>
+        <p>
+          Welcome to our Bookstore! We are passionate about books and believe in
+          their power to educate, entertain, and inspire. Our mission is to
+          provide a wide variety of books for every kind of reader – from the
+          latest bestsellers to hidden gems.
+        </p>
+        <p>
+          Founded in 2024, we aim to create a community of book lovers who can
+          share recommendations, discuss their favorite books, and enjoy a
+          welcoming atmosphere. Whether you're looking for fiction, non-fiction,
+          children's books, or rare finds, we have something for you.
+        </p>
+        <p>
+          At our bookstore, we offer a personalized shopping experience, fast
+          shipping, and customer support that goes the extra mile to help you
+          find your next great read!
+        </p>
+      </div>
+      <div class="team-container">
+        <h2>Meet the Team</h2>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Team Member 1" />
+          <h3>Jane Doe</h3>
+          <p>Founder & CEO</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Team Member 2" />
+          <h3>John Smith</h3>
+          <p>Head of Sales</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Team Member 3" />
+          <h3>Mary Johnson</h3>
+          <p>Customer Support</p>
+        </div>
+      </div>
+    </section>
+
+    {% include 'footer.html' %}
+  </body>
+</html>
