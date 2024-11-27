@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ book.title }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .book-detail {
+      text-align: center;
+    }
+    .book-detail img {
+      max-width: 200px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .book-detail h1 {
+      margin: 10px 0;
+      color: #333;
+    }
+    .book-detail p {
+      margin: 5px 0;
+      color: #666;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="book-detail">
+      {% if book.image_url %}
+      <img src="{{ book.image_url }}" alt="{{ book.title }}">
+      {% endif %}
+      <h1>{{ book.title }}</h1>
+      <p><strong>Author:</strong> {{ book.author }}</p>
+      <p><strong>Published Date:</strong> {{ book.published_date }}</p>
+      <p>{{ book.description }}</p>
+      <a href="/purchase/{{ book.id }}/" class="btn">Buy Now</a>
+    </div>
+  </div>
+</body>
+</html>
