@@ -53,17 +53,31 @@
 <body>
   {% include 'navbar.html' %}
   <div class="container">
-    <div class="book-detail">
-      {% if book.image_url %}
-      <img src="{{ book.image_url }}" alt="{{ book.title }}">
-      {% endif %}
-      <h1>{{ book.title }}</h1>
-      <p><strong>Author:</strong> {{ book.author }}</p>
-      <p><strong>Published Date:</strong> {{ book.published_date }}</p>
-      <p>{{ book.description }}</p>
-      <a href="{% url 'book_purchase' book.id %}" class="btn">Buy Now</a>
-    </div>
+    <h1>Purchase {{ book.title }}</h1>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Price:</strong> ₹199{{ book.price }}</p>
+    <p>{{ book.description }}</p>
+    
+    <!-- Form with JavaScript handler -->
+    <form id="purchaseForm">
+      {% csrf_token %}
+      <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+        Buy Now
+      </button>
+    </form>
   </div>
   {% include 'footer.html' %}
+  
+  <!-- JavaScript to handle form submission -->
+  <script>
+    document.getElementById('purchaseForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      alert('🎉 Thank you for your purchase! Your order for "{{ book.title }}" by {{ book.author }} has been successfully placed. 📚');
+      // Redirect to the home page
+      window.location.href = '/';
+    });
+  </script>
+  
+  
 </body>
 </html>

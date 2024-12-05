@@ -29,10 +29,16 @@
       nav a {
         color: white;
         text-decoration: none;
-        margin: 0 25px;
+        margin: 0 15px;
+        display: inline-flex;
+        align-items: center;
       }
       nav a:hover {
         text-decoration: underline;
+      }
+      .icon {
+        height: 20px; /* Adjust icon size */
+        margin-left: 5px;
       }
       .container {
         max-width: 800px;
@@ -47,10 +53,14 @@
   <body>
     <nav>
       <img src="{% static 'images/logo.svg' %}" alt="Logo" />
-      <div>
+      <div style="display: flex; align-items: center;">
         <a href="/">Home</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
+        <a href="/login/">
+          <img src="https://cdn-icons-png.flaticon.com/512/4661/4661334.png" alt="Login Icon" class="icon" style="margin-right: 4px;" />
+          Login
+        </a>
       </div>
     </nav>
   </body>
