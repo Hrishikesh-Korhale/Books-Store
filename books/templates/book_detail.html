@@ -59,9 +59,10 @@
       {% endif %}
       <h1>{{ book.title }}</h1>
       <p><strong>Author:</strong> {{ book.author }}</p>
+      <p><strong>Price:</strong> {{ book.price }} ₹</p>
       <p><strong>Published Date:</strong> {{ book.published_date }}</p>
       <p>{{ book.description }}</p>
-      <a href="{% url 'book_purchase' book.id %}" class="btn">Buy Now</a>
+      <a href="{% url 'purchase_book' book.id %}" class="btn">Buy Now</a>
     </div>
   </div>
   {% include 'footer.html' %}

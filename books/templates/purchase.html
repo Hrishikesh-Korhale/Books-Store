@@ -1,83 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ book.title }}</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .book-detail {
-      text-align: center;
-    }
-    .book-detail img {
-      max-width: 200px;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
-    .book-detail h1 {
-      margin: 10px 0;
-      color: #333;
-    }
-    .book-detail p {
-      margin: 5px 0;
-      color: #666;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 20px;
-      background: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    .btn:hover {
-      background: #0056b3;
-    }
-  </style>
-</head>
-<body>
-  {% include 'navbar.html' %}
-  <div class="container">
-    <h1>Purchase {{ book.title }}</h1>
-    <p><strong>Author:</strong> {{ book.author }}</p>
-    <p><strong>Price:</strong> ₹199{{ book.price }}</p>
-    <p>{{ book.description }}</p>
-    
-    <!-- Form with JavaScript handler -->
-    <form id="purchaseForm">
-      {% csrf_token %}
-      <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-        Buy Now
-      </button>
-    </form>
-  </div>
-  {% include 'footer.html' %}
-  
-  <!-- JavaScript to handle form submission -->
-  <script>
-    document.getElementById('purchaseForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the default form submission
-      alert('🎉 Thank you for your purchase! Your order for "{{ book.title }}" by {{ book.author }} has been successfully placed. 📚');
-      // Redirect to the home page
-      window.location.href = '/';
-    });
-  </script>
-  
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase {{ book.title }}</title>
+    <style>
+      /* Global Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        color: #333;
+      }
+
+      /* Container */
+      .container {
+        width: 80%;
+        margin: 30px auto;
+        background-color: white;
+        padding: 40px;  /* Increased padding for the container */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Form Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;  /* Added padding inside the form */
+        background-color: #fafafa;  /* Light background color for the form area */
+        border-radius: 8px;
+      }
+
+      label {
+        font-size: 16px;
+        color: #555;
+      }
+
+      input, textarea {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 100%;
+      }
+
+      input[type="text"], input[type="email"] {
+        height: 20px;  /* Increased input height */
+      }
+
+      textarea {
+        height: 100px;  /* Increased textarea height */
+        resize: vertical;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      /* Additional Layout Tweaks */
+      .book-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .book-info {
+        flex: 1;
+        padding-right: 20px; /* Space between the text and image */
+      }
+
+      .book-details p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .book-details strong {
+        font-weight: bold;
+      }
+
+      .book-image img {
+        width: 100px; /* Adjust size of the image */
+        height: auto;
+        border-radius: 8px;
+        margin-right: 20px;
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 768px) {
+        .container {
+          width: 90%;
+          padding: 20px;
+        }
+
+        button {
+          width: 100%;
+        }
+
+        .book-details {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .book-image {
+          margin-top: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container">
+      <h1>Purchase {{ book.title }}</h1>
+      
+      <div class="book-details">
+        <div class="book-info">
+          <p><strong>Author:</strong> {{ book.author }}</p>
+          <p><strong>Price:</strong> ₹{{ book.price }}</p>
+          <p>{{ book.description }}</p>
+        </div>
+        <div class="book-image">
+          <img src="{{ book.image_url }}" alt="{{ book.title }}" />
+        </div>
+      </div>
+
+      <!-- Order Form -->
+      <form method="post" action="">
+        {% csrf_token %}
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" name="mobile" required />
+
+        <label for="address">Shipping Address:</label>
+        <textarea id="address" name="address" rows="4" required></textarea>
+
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+    {% include 'footer.html' %}
+  </body>
 </html>
